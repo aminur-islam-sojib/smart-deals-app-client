@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../Firebase/firebase.init";
+import { AuthContext } from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthProvider.Provider value={authInfo}>{children}</AuthProvider.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 
