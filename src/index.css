@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+@plugin "daisyui";
+@layer utilities {
+  .btn-primary {
+    @apply text-white font-semibold px-6 py-2;
+    background: linear-gradient(to right, #632ee3 0%, #9f62f2 100%);
+  }
+
+  .btn-outline {
+    @apply relative font-semibold px-6 py-2  text-transparent;
+    background: linear-gradient(white, white) padding-box,
+      linear-gradient(to right, #632ee3 0%, #9f62f2 100%) border-box;
+    border: 2px solid transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    color: #632ee3;
+  }
+
+  .btn-outline:hover {
+    color: white;
+    background: linear-gradient(to right, #632ee3 0%, #9f62f2 100%);
+  }
+  .text-primary {
+    color: linear-gradient(to right, #632ee3 0%, #9f62f2 100%);
+  }
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.active {
+  text-decoration: underline;
+}
