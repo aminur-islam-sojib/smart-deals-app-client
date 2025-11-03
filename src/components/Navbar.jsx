@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
 
 const Navbar = () => {
+  const { logOut, user } = useContext(AuthContext);
+
   const links = (
     <>
       <NavLink to={"/"}> Home </NavLink>
@@ -48,9 +51,15 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 flex gap-5">{links}</ul>
       </div>
       <div className="navbar-end flex gap-2">
-        <Link to={"/login"} className="btn btn-outline">
-          Login
-        </Link>
+        {user ? (
+          <button onClick={() => logOut()} className="btn btn-outline">
+            Log Out
+          </button>
+        ) : (
+          <Link to={"/login"} className="btn btn-outline">
+            Login
+          </Link>
+        )}
         <Link to={"/register"} className="btn btn-primary">
           Register
         </Link>

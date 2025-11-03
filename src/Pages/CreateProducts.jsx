@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Bounce, toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Context/AuthContext";
 
 export default function CreateProductForm() {
+  const { user } = useContext(AuthContext);
+
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -11,10 +14,10 @@ export default function CreateProductForm() {
     condition: "Brand New",
     usage: "",
     imageUrl: "",
-    sellerName: "",
-    sellerEmail: "",
+    sellerName: `${user?.name}`,
+    sellerEmail: `${user?.email}`,
     sellerContact: "",
-    sellerImageUrl: "",
+    sellerImageUrl: `${user?.photoURL}`,
     location: "",
     description: "",
   });
@@ -49,7 +52,8 @@ export default function CreateProductForm() {
       !formData.sellerEmail.trim() ||
       !formData.sellerContact.trim() ||
       !formData.location.trim() ||
-      !formData.description.trim()
+      !formData.description.trim() ||
+      !formData.sellerEmail.trim()
     ) {
       toast.error("Please fill in all required fields!", {
         position: "top-center",
@@ -76,7 +80,7 @@ export default function CreateProductForm() {
       category: formData.category,
       price_min: formData.minPrice,
       price_max: formData.maxPrice,
-      email: formData.email,
+      email: formData.sellerEmail,
       created_at: new Date(),
       image: formData.imageUrl,
       location: formData.location,
@@ -282,8 +286,9 @@ export default function CreateProductForm() {
                   type="email"
                   name="sellerEmail"
                   value={formData.sellerEmail}
+                  defaultValue={user?.email}
                   onChange={handleChange}
-                  placeholder="leil31955@niord.com"
+                  placeholder={user?.email}
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none"
                   required
                 />

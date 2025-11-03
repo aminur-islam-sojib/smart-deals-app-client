@@ -1,9 +1,14 @@
 import { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const { signIn, googleSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, user } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,16 +16,26 @@ const Login = () => {
     const password = e.target.password.value;
     console.log(email, password);
     try {
-      await signIn(email, password).then((data) => {
-        console.log(data);
-      });
+      await signIn(email, password);
+      toast.success(`Login Successful! Welcome ${user?.name}`);
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 500);
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleGoogleLogin = async () => {
-    await googleSignIn().then((user) => console.log(user));
+    try {
+      await googleSignIn();
+      toast.success(`Login Successful! Welcome ${user?.name}`);
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 500);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
