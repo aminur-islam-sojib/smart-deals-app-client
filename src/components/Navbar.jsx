@@ -1,14 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const links = (
     <>
       <NavLink to={"/"}> Home </NavLink>
-      <NavLink to={"/"}> All Products </NavLink>
-      <NavLink to={"/"}> My Products </NavLink>
-      <NavLink to={"/"}> My Bids </NavLink>
-      <NavLink to={"/"}> Create Products </NavLink>
+      <NavLink to={"/all-products"}> All Products </NavLink>
+      <NavLink to={"/my-products"}> My Products </NavLink>
+      <NavLink to={"/my-bids"}> My Bids </NavLink>
+      <NavLink to={"/create-products"}> Create Products </NavLink>
     </>
   );
 
@@ -48,8 +48,12 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 flex gap-5">{links}</ul>
       </div>
       <div className="navbar-end flex gap-2">
-        <a className="btn btn-outline">Login</a>
-        <a className="btn btn-primary">Register</a>
+        <Link to={"/login"} className="btn btn-outline">
+          Login
+        </Link>
+        <Link to={"/register"} className="btn btn-primary">
+          Register
+        </Link>
       </div>
     </div>
   );
