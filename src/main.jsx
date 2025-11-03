@@ -13,6 +13,8 @@ import Registration from "./Pages/Registration.jsx";
 import Login from "./Pages/Login.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
 import ProductsDetailsPage from "./Pages/ProductsDetailsPage.jsx";
+import CreateProductForm from "./Pages/CreateProducts.jsx";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
           fetch(`http://localhost:3000/products/${params.id}`),
         element: <ProductsDetailsPage />,
       },
+      {
+        path: "/create-products",
+        element: <CreateProductForm />,
+      },
     ],
   },
 ]);
@@ -45,6 +51,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
       <RouterProvider router={router} />
+      <ToastContainer />
     </AuthProvider>
   </StrictMode>
 );
