@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import { Link } from "react-router";
 
 const RecentProducts = () => {
   const [recentProducts, setRecentProducts] = useState([]);
@@ -34,7 +35,12 @@ const RecentProducts = () => {
                 ${product?.price_min} - {product?.price_max}
               </p>
               <div className=" flex justify-center w-full">
-                <button className="btn btn-outline w-full">See Details</button>
+                <Link
+                  to={`/product/${product._id}`}
+                  className="btn btn-outline w-full"
+                >
+                  See Details
+                </Link>
               </div>
             </div>
           </div>

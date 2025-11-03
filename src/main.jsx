@@ -12,6 +12,7 @@ import Home from "./Pages/Home.jsx";
 import Registration from "./Pages/Registration.jsx";
 import Login from "./Pages/Login.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
+import ProductsDetailsPage from "./Pages/ProductsDetailsPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,12 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/product/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/products/${params.id}`),
+        element: <ProductsDetailsPage />,
       },
     ],
   },
