@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useLoaderData } from "react-router";
 import DialogBox from "../components/DialogBox";
+import BidsTable from "../components/ProductsBids";
 
 const ProductListing = () => {
   const [imageError, setImageError] = useState(false);
@@ -192,6 +193,8 @@ const ProductListing = () => {
       >
         <DialogBox productItem={product} dialogRef={dialogRef} />
       </dialog>
+
+      <BidsTable productItem={product} />
     </>
   );
 };

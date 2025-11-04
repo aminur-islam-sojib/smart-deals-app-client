@@ -43,7 +43,7 @@ const DialogBox = ({ productItem, dialogRef }) => {
   };
 
   return (
-    <div className="modal-box">
+    <div className="modal-box overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div className="max-w-lg mx-auto border-2 border-dashed border-blue-300 p-6 rounded-lg">
         <h2 className="text-center text-xl font-bold mb-4">
           Give Seller Your Offered Price
@@ -103,7 +103,6 @@ const DialogBox = ({ productItem, dialogRef }) => {
                   Place your Price <span className=" text-red-500">*</span>
                 </h1>
               </div>{" "}
-              <p className=" absolute top-0 right-0">*</p>
             </label>
             <input
               type="text"
