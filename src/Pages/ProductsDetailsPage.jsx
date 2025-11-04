@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   ArrowLeft,
   MapPin,
@@ -9,10 +9,11 @@ import {
   Package,
 } from "lucide-react";
 import { useLoaderData } from "react-router";
+import DialogBox from "../components/DialogBox";
 
 const ProductListing = () => {
   const [imageError, setImageError] = useState(false);
-
+  const dialogRef = useRef();
   const product = useLoaderData();
 
   const formatDate = (dateString) => {
@@ -22,6 +23,10 @@ const ProductListing = () => {
       month: "2-digit",
       day: "2-digit",
     });
+  };
+
+  const handleModalOpen = () => {
+    dialogRef.current.showModal();
   };
 
   return (
@@ -168,7 +173,10 @@ const ProductListing = () => {
                 </div>
 
                 {/* Action Button */}
-                <button className="w-full bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                <button
+                  onClick={handleModalOpen}
+                  className="w-full bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
                   I Want To Buy This Product
                 </button>
               </div>
@@ -176,6 +184,14 @@ const ProductListing = () => {
           </div>
         </div>
       </div>
+
+      <dialog
+        ref={dialogRef}
+        id="my_modal_5"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <DialogBox productItem={product} dialogRef={dialogRef} />
+      </dialog>
     </>
   );
 };
