@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import AllProducts from "./Pages/AllProducts.jsx";
 import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 import MyProducts from "./Pages/MyProducts.jsx";
+import MyBids from "./Pages/MyBids.jsx";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             <MyProducts />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/my-bids",
+        element: <MyBids />,
       },
     ],
   },
