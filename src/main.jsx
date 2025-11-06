@@ -2,11 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout/Layout.jsx";
 import Home from "./Pages/Home.jsx";
 import Registration from "./Pages/Registration.jsx";
@@ -23,19 +19,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <p>Error</p>,
     children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/register",
-        element: <Registration />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
+      { index: true, element: <Home /> },
+      { path: "/register", element: <Registration /> },
+      { path: "/login", element: <Login /> },
       {
         path: "/product/:id",
         loader: ({ params }) =>
@@ -46,7 +34,7 @@ const router = createBrowserRouter([
         path: "/create-products",
         element: (
           <PrivateRoute>
-            <CreateProductForm />,
+            <CreateProductForm />
           </PrivateRoute>
         ),
       },
@@ -59,7 +47,7 @@ const router = createBrowserRouter([
         path: "/my-products",
         element: (
           <PrivateRoute>
-            <MyProducts />,
+            <MyProducts />
           </PrivateRoute>
         ),
       },

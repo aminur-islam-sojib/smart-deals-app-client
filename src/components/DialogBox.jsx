@@ -42,6 +42,10 @@ const DialogBox = ({ productItem, dialogRef }) => {
     e.target.reset();
   };
 
+  const handleDialogCancel = () => {
+    dialogRef.current.close();
+  };
+
   return (
     <div className="modal-box overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div className="max-w-lg mx-auto border-2 border-dashed border-blue-300 p-6 rounded-lg">
@@ -128,9 +132,14 @@ const DialogBox = ({ productItem, dialogRef }) => {
 
           {/* Buttons */}
           <div className="flex justify-end gap-3 pt-3">
-            <form method="dialog">
-              <button className="btn btn-outline">Cancel</button>
-            </form>
+            <button
+              ref={dialogRef}
+              onClick={handleDialogCancel}
+              className="btn btn-outline"
+            >
+              Cancel
+            </button>
+
             <button type="submit" className="btn btn-primary">
               Submit Bid
             </button>

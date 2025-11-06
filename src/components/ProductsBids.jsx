@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
+import useAxios from "../Hooks/useAxios";
 
 const BidsTable = ({ productItem }) => {
   const [bids, setBids] = useState([]);
 
-  useEffect(() => {
-    fetch(`http://localhost:3000/bids/${productItem?._id}`)
-      .then((res) => res.json())
-      .then((data) => setBids(data));
-  }, [productItem]);
+  const instance = useAxios();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await instance.get(`/bids/${productItem?._id}`);
+        const data = response.data;
+        setBids(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [instance, productItem]);
   return (
     <div className="p-6 bg-gray-50 rounded-lg shadow-sm">
       {/* Header */}
